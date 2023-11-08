@@ -262,28 +262,32 @@ async function image_clicked(ev) {
         // card is not valid, play shake animation and dont try to play card
         playAnimation(ev.target, "shake", 1000);
         return;
-    }
-    let wildColor = undefined;
-    let color = ev.target.CardColor;
-    let score = ev.target.CardScore;
-    let isDrawCard = false;
-    // handle color change
-    //TODO: nicht Strings, sondern value vergleichen (Colorchange: Value= 14, Draw4: Value=13, beide haben Score von 50)
-    if (ev.target.Text == 'ChangeColor' || ev.target.Text == 'Draw4') {
-        wildColor = await handleColorChange();
-    }
-    if (ev.target.Text == 'Draw2' || ev.target.Text == 'Draw4') {
-        isDrawCard = true;
-    }
-    if (ev.target.Text == 'Reverse') {
-        direction *= -1;
-        displayDirection();
-        //  toggleSpinAnimationDirection();
-    }
+    } else {
+        playAnimation(ev.target, "cardplayed", 5000);
+        let wildColor = undefined;
+        let color = ev.target.CardColor;
+        let score = ev.target.CardScore;
+        let isDrawCard = false;
+        // handle color change
+        //TODO: nicht Strings, sondern value vergleichen (Colorchange: Value= 14, Draw4: Value=13, beide haben Score von 50)
+        if (ev.target.Text == 'ChangeColor' || ev.target.Text == 'Draw4') {
+            wildColor = await handleColorChange();
+        }
+        if (ev.target.Text == 'Draw2' || ev.target.Text == 'Draw4') {
+            isDrawCard = true;
+        }
+        if (ev.target.Text == 'Reverse') {
+            direction *= -1;
+            displayDirection();
+            //  toggleSpinAnimationDirection();
+        }
 
 
-    tryToPlayCard(ev.target.CardValue, color, wildColor, isDrawCard, score);
-};
+        tryToPlayCard(ev.target.CardValue, color, wildColor, isDrawCard, score);
+
+    }
+}
+    
 
 function displayDirection() {
     if (direction == 1) {
@@ -354,7 +358,7 @@ async function tryToPlayCard(value, color, wildColor, isDrawCard, score) {
             updateScore(currentPlayerId, score);
             removeCardFromPlayersHand(value, color);
             setTopCard(value, wildColor != undefined ? wildColor : color);
-            
+
             // in case of Draw2/Draw4 call GetCards for the blocked player
             if (isDrawCard) {
                 // in this case this is the blocked player
@@ -362,9 +366,9 @@ async function tryToPlayCard(value, color, wildColor, isDrawCard, score) {
                 updatePlayerCards(blockedPlayer.Player);
             }
             setCurrentPlayer(cardPlayresult);
-            checkIfThereIsAWinner(); 
-                
-            
+            checkIfThereIsAWinner();
+
+
         }
         else {
             alert("Error: " + cardPlayresult.error);
@@ -507,7 +511,7 @@ function displayCurrentPlayer() {
 
 
 /***************************************************/
-//Animation, falls falsche Karte angeklickt wird
+// Funktion für Animationen
 /***************************************************/
 
 function playAnimation(target, animation, duration) {
@@ -614,11 +618,12 @@ function checkIfThereIsAWinner() {
     for (let playerId = 0; playerId <= 3; playerId++) {
         if (playerList[playerId].Cards.length === 0) {
             winnerId = playerId;
-             
+
         }
-        if(winnerId !== null){
-            document.getElementById("winner").textContent= playerList[winnerId].Player + " wins this game!";
+        if (winnerId !== null) {
+            document.getElementById("winner").textContent = playerList[winnerId].Player + " wins this game!";
             WinnerModal.show();
         }
     }
 }
+
