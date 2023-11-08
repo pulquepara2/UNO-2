@@ -4,7 +4,7 @@
   color: #ebe6f7;
   /* background-color: #071540;*/
   background-image: url("others/main-background.png");
-  background-size:cover;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 25px;
@@ -17,6 +17,8 @@ h1 {
   margin-top: 40px;
   color: #f28705;
   font-size: 46px;
+  font-weight: bold;
+
 }
 
 h4,
@@ -203,4 +205,48 @@ button {
   /* or any other transform property */
   transition: transform 0.5s ease;
   /* specify the transition property */
+}
+
+#startbutton {
+
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f74c69;
+  /* Bright red color */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#startbutton:hover {
+  background-color: #af2f44;
+}
+
+#helpbutton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f74c69;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#helpbutton:hover {
+  background-color: #af2f44;
 }
