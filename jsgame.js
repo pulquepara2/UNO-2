@@ -290,13 +290,21 @@ async function image_clicked(ev) {
     
 
 function displayDirection() {
-    if (direction == 1) {
-        document.getElementById("directionImg").src = "others/direction_cw.png";
+    if (direction === 1) {
+      directionImg.classList.add("rotated");
+      setTimeout(() => {
+        directionImg.src = "others/direction_cw.png";
+        directionImg.classList.remove("rotated");
+      }, 1000); // Zeit sollte zur Dauer der CSS-Transition passen
     }
-    if (direction == -1) {
-        document.getElementById("directionImg").src = "others/direction_ccw.png";
+    if (direction === -1) {
+      directionImg.classList.add("rotated");
+      setTimeout(() => {
+        directionImg.src = "others/direction_ccw.png";
+        directionImg.classList.remove("rotated");
+      }, 1000); // Zeit sollte zur Dauer der CSS-Transition passen
     }
-}
+  }
 /*function toggleSpinAnimationDirection() {
     if (document.getElementById("directionImg").classList.contains('spinRight')) {
         document.getElementById("directionImg").classList.remove('spinRight');
