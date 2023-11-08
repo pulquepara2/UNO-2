@@ -91,6 +91,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', async func
 
     setTopCard(result.TopCard.Value, result.TopCard.Color);
 
+    //den Score vom result einlesen
     for (let i = 0; i < playerList.length; i++) {
         let score = playerList[i].Score;
         let h6 = document.getElementById("Score_" + i);
@@ -288,7 +289,7 @@ async function image_clicked(ev) {
     }
 }
     
-
+const directionImg = document.getElementById("directionImg");
 function displayDirection() {
     if (direction === 1) {
       directionImg.classList.add("rotated");
