@@ -107,6 +107,9 @@
                 <div class="col-2 button">
                     <button type="button" id="startbutton">New game</button>
                 </div>
+                <div class="col-3 button">
+                    <button type="button" id="helpbutton">Game Help</button>
+                </div>
             </div>
 
         </div>
@@ -202,6 +205,165 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Help Modal-->
+    <div id="helpModal" class="modal">
+        <div class="modal-content" id="helpModal-content">
+            <div class="modal-header" id="helpModal-header">
+                <h2>Spielhilfe</h2>
+                <span class="close" id="closeHelpbutton">&times;</span>
+            </div>
+            <div class="modal-body" id="helpModal-body">
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'rubrik1')">Spielregeln</button>
+                    <button class="tablinks" onclick="openTab(event, 'rubrik2')">Aktionskarten</button>
+                    <button class="tablinks" onclick="openTab(event, 'rubrik3')">Strafen</button>
+                    <button class="tablinks" onclick="openTab(event, 'rubrik4')">Punkte</button>
+                </div>
+                <div id="rubrik1" class="tabcontent">
+                    <h3>Ziel des Spiels</h3>
+                    <p>Das Ziel beim UNO-de-los-muertos ist es als Erster Spieler 500 Punkte zu erzielen.
+                        Pro Runde erhält der Spieler Punkte, welcher als Erster alle seine Karten auf der Hand ablegt.
+                        Punkte gibt es für alle Karten, die die übrigen Mitspieler noch auf der Hand halten (siehe
+                        Punkte).</p>
+                    <h3>Spielvorbereitung</h3>
+                    <p>Die Karten werden gemischt und jeder Spieler erhält 7 Karten, die er auf die Hand nimmt. Die
+                        verbleibenden
+                        Karten werden verdeckt in die Mitte gelegt und bilden den Kartenstapel. Vom Kartenstapel wird
+                        die oberste
+                        Karte aufgedeckt und daneben gelegt. Dieser Stapel bildet den Ablegestapel. Ein Spieler wird
+                        ausgelost der
+                        die Runde beginnt.</p>
+                    <h3>Spielverlauf</h3>
+                    <p>Der erste Spieler legt eine Karte von seiner Hand auf den Ablagestapel.
+                        Dabei gilt: Eine Karte kann nur auf eine Karte der gleichen Farbe oder der gleichen Zahl gelegt
+                        werden.
+                        Die schwarzen Karten sind spezielle Aktionskarten mit besonderen Regeln (siehe Aktionskarten).
+                        Kann ein Spieler keine passende Karte legen, so muss er eine Strafkarte vom verdeckten Stapel
+                        ziehen.
+                        Diese Karte kann er sofort wieder ausspielen, sofern diese passt. Hat er keine passende Karte
+                        ist der
+                        nächste Spieler an der Reihe.
+                        Wer die vorletzte Karte ablegt, muss „UNO!“ rufen und signalisiert damit,
+                        dass er nur
+                        noch eine Karte auf der Hand hat.
+                        Vergisst ein Spieler das und ein anderer bekommt es rechtzeitig mit (bevor der nächste Spieler
+                        eine Karte
+                        gezogen oder abgeworfen hat)
+                        so muss er 2 Strafkarten ziehen. Die Runde gewinnt derjenige, welcher die letzte Karte abgelegt
+                        hat.
+                        Die Punkte werden addiert und eine neue Runde wird gespielt.</p>
+                </div>
+                <div id="rubrik2" class="tabcontent">
+                    <h3>Aktionskarten</h3>
+                    <p>Im Spiel gibt es mehrere Aktionskarten mit unterschiedlichen Funktionen,
+                        welche nachfolgend erklärt werden.</p>
+
+                    <h4>ZIEH ZWEI KARTE</h4>
+                    <div class="card-container">
+                        <img src="cardsimg/Blue10.png" alt="zieh zwei karte - example" width="60" class="grayscale-img">
+                        <p>Wenn diese Karte gelegt wird, muss der nächste Spieler 2 Karten ziehen und darf
+                            in dieser Runde keine Karten ablegen. Diese Karte kann nur auf eine Karte mit entsprechender
+                            Farbe
+                            oder andere Zieh Zwei Karten gelegt werden. Wenn sie zu Beginn des Spiels aufgedeckt wird,
+                            gelten diesselben Regeln.</p>
+                    </div>
+                    <h4>RETOUR KARTE</h4>
+                    <div class="card-container">
+                        <img src="cardsimg/Blue12.png" alt="retour karte - example" width="60" class="grayscale-img">
+                        <p> Bei dieser Karte ändert sich die Spielrichtung. Wenn bisher nach links gespielt wurde,
+                            wird nun nach rechts gespielt und umgekehrt. Die Karte kann nur auf eine entsprechende Farbe
+                            oder eine andere Retour Karte gelegt werden. Wenn diese Karte zu Beginn des Spiels gezogen
+                            wird,
+                            fängt der Geber an und dann setzt der Spieler zu seiner Rechten anstatt zu seiner Linken
+                            das Spiel fort.
+                        </p>
+                    </div>
+                    <h4>AUSSETZEN KARTE</h4>
+                    <div class="card-container">
+                        <img src="cardsimg/Blue11.png" alt="aussetzen karte - example" width="60" class="grayscale-img">
+                        <p>Nachdem diese Karte gelegt wurde, wird der nächste Spieler „übersprungen“.
+                            Die Karte kann nur auf eine andere mit entsprechender Farbe oder eine andere Aussetzen Karte
+                            gelegt werden.
+                            Wenn diese Karte zu Beginn des Spiels gezogen wird,
+                            wird der Spieler zur Linken des Gebers „übersprungen“ und der Spieler zur Linken
+                            dieses Spielers setzt das Spiel fort.</p>
+                    </div>
+                    <h4>FARBENWAHLKARTE</h4>
+                    <div class="card-container">
+                        <img src="cardsimg/Black14.png" alt="farbenwahlkarte - example" width="60" class="card-image">
+                        <p>Der Spieler, der diese Karte legt, entscheidet welche Farbe als nächstes gelegt werden soll.
+                            Auch die schon liegende Farbe darf gewählt werden. Ein Farbenwahl Karte darf auch dann
+                            gelegt werden,
+                            wenn der Spieler eine andere Karte legen könnte. Wenn eine Farbenwahl Karte zu Beginn des
+                            Spiels gezogen
+                            wird,
+                            entscheidet der Spieler zur Linken des Gebers, welche Farbe als nächstes gelegt werden soll.
+                        </p>
+                    </div>
+                    <h4>ZIEH VIER FARBENWAHLKARTE</h4>
+                    <div class="card-container">
+                        <img src="cardsimg/Black13.png" alt="zieh vier farbenwahlkarte - example" width="60"
+                            class="card-image">
+                        <p>Diese Karte ist die beste. Der Spieler, der sie legt, entscheidet, welche Farbe als nächstes
+                            gelegt werden
+                            soll.
+                            Zudem muss der nächste Spieler 4 Karten von dem Kartenstapel nehmen. Er darf in dieser Runde
+                            keine Karte
+                            ablegen. Leider darf die Karte nur dann gelegt werden, wenn der Spieler der sie hat,
+                            keine Karte in der Hand hält, die der Farbe auf dem Ablegestapel entspricht. Hat der Spieler
+                            eine Karte
+                            mit der entsprechenden Nummer oder Aktionskarten, kann die Zieh Vier Farbenwahlkarte dennoch
+                            gelegt werden.
+                            Ein Spieler der eine Zieh-Vier-Farbenwahlkarte hat, kann bluffen und die Karte „unerlaubt“
+                            legen.
+                            Wird er jedoch dabei „erwischt“ gelten bestimmte Regeln (siehe Strafkarten). Wird diese
+                            Karte zu Beginn des
+                            Spiels gezogen,wird sie auf den Stapel zurückgelegt und eine andere Karte wird gezogen.</p>
+                    </div>
+                </div>
+
+                <div id="rubrik3" class="tabcontent">
+                    <h3>Strafen</h3>
+                    <p>Wenn ein Spieler sich nicht an die Regeln hält, so muss er ein oder mehrere Strafkarten
+                        ziehen.
+                        Die Regelungen sind wie folgt:</p>
+                    <ul>
+                        <li>UNO: Vergisst ein Spieler nach dem legen seiner vorletzten Karte UNO! zu rufen und hat
+                            der
+                            nächste Spieler seine Karte noch nicht ausgespielt, so muss er zwei Strafkarten ziehen.
+                        </li>
+                        <li>Vorschläge: Wer seinen Mitspielern Vorschläge macht, was sie spielen sollten,
+                            muss zur Strafe zwei Karten ziehen.</li>
+                        <li>Falsch gelegt: Wer eine Karte legt, obwohl er nicht dran ist,
+                            oder eine falsche Karte gelegt hat, muss diese wieder aufnehmen und erhält zusätzlich
+                            eine
+                            Strafkarte.
+                        </li>
+                        <li>Die +4 darf nur dann gelegt werden, wenn der Spieler die aktuelle Farbe mit Ausnahme von
+                            anderen
+                            Aktionskarten nicht bedienen kann. Ist der von der +4 betroffene Spieler der Auffassung,
+                            dass die Karte zu unrecht ausgespielt wurde, so kann er den vorherigen Spieler
+                            herausfordern.
+                            Dieser muss ihm dann durch Vorzeigen seiner Karten nachweisen, dass er die Farbe
+                            tatsächlich
+                            nicht korrekt bedienen konnte. Kann er dies bestätigen, so muss der herausfordernde
+                            Spieler
+                            statt 4 nun 6 Karten aufnehmen.
+                            Wurde er hingegen überführt, die +4 unrechtmäßig ausgespielt zu haben, so muss er selbst
+                            die
+                            4 Karten
+                            ziehen.</li>
+                    </ul>
+                </div>
+                <div id="rubrik4" class="tabcontent">
+                    <h3>Punkte</h3>
+                    <p>Der Spieler, der als erster all seine Karten abegelgt hat,
+                        erhält folgende Punkte für die Karten, die seine Mitspieler noch in der Hand halten:</p>
                 </div>
             </div>
         </div>
