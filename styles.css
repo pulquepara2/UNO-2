@@ -2,7 +2,6 @@
   margin-top: 50px;
   font-family: Alike Angular, Trebuchet MS;
   color: #ebe6f7;
-  /* background-color: #071540;*/
   background-image: url("others/main-background.png");
   background-size: cover;
   background-position: center;
@@ -30,8 +29,6 @@ button {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
-
 
 .card {
   height: 80px;
@@ -173,27 +170,13 @@ button {
   }
 }
 
-/*  @keyframes spin-right {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes spin-left {
-    100% {
-      transform: rotate(-360deg);
-    }
-  }
-  */
 .color-buttons {
   margin-left: 30px;
 }
 
 .cardplayed {
-  transform: scale(1.2);
-  /* or any other transform property */
-  transition: transform 0.5s ease;
-  /* specify the transition property */
+  transform: scale(3);
+ 
 }
 
 #startbutton {
@@ -201,7 +184,6 @@ button {
   display: inline-block;
   padding: 10px 20px;
   background-color: #f74c69;
-  /* Bright red color */
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -287,4 +269,51 @@ button {
 }
 .tabcontent {
   display: none;
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Fügt unten Abstand zwischen den Blöcken hinzu */
+}
+ 
+.card-image {
+  margin-right: 10px; /* Fügt rechten Abstand zwischen Bild und Text hinzu */
+}
+.grayscale-img {
+  margin-right: 10px;
+  filter: grayscale(100%);
+}
+ 
+h3 {
+  font-size: 24px;
+}
+p {
+  font-size: 16px;
+}
+ 
+table {
+  border-collapse: collapse;
+  border: 1px solid #f28705; /* Roter Rahmen */
+  width: 100%;
+}
+ 
+th,
+td {
+ 
+  padding: 8px;
+  text-align: center; /* Horizontal zentriert */
+}
+ 
+th {
+  background-color: #f28705; /* Rote Hintergrundfarbe für Überschriftenzeile */
+  color: white; /* Weiße Schriftfarbe für Überschriftenzeile */
+}
+ 
+tr:nth-child(even) {
+  background-color: lightgray; /* Grauer Hintergrund für gerade Zeilen */
+}
+ 
+tr:nth-child(odd) {
+  background-color: white; /* Weißer Hintergrund für ungerade Zeilen */
 }

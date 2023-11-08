@@ -8,11 +8,11 @@ let topCardValue;
 let topCardColor;
 
 
-let myModal = new bootstrap.Modal(document.getElementById('playerNames'));
+let playerformModal = new bootstrap.Modal(document.getElementById('playerNames'));
 let ColorchangeModal = new bootstrap.Modal(document.getElementById('ColorchangeModal'));
 let WinnerModal = new bootstrap.Modal(document.getElementById("WinnerModal"));
 document.getElementById("startbutton").addEventListener("click", function () {
-    myModal.show();
+    playerformModal.show();
 })
 
 /*********************************************************/
@@ -32,8 +32,7 @@ function reset() {
 
 // formular submit abfangen
 document.getElementById('playerNamesForm').addEventListener('submit', async function (evt) {
-    //Startbutton variable
-    let startbutton = document.getElementById('startbutton');
+
 
     console.log("Spieler hat Button 'Spiel starten' gedrückt!");
     // Formular absenden verhindern
@@ -70,7 +69,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', async func
     playernames = [player1Name, player2Name, player3Name, player4Name];
     console.log(playernames);
 
-    myModal.hide();
+    playerformModal.hide();
 
     let result = await startNewGame();
     gameId = result.Id;
@@ -97,7 +96,10 @@ document.getElementById('playerNamesForm').addEventListener('submit', async func
         let h6 = document.getElementById("Score_" + i);
         h6.textContent = "Score: " + score;
     }
-
+    //falls TopCard Reverse Card ist, wird direction auf -1 gesetzt
+    if (result.TopCard.Value === 12) {
+        direction = -1;
+    }
     displayDirection();
     showdrawpile();
 
@@ -163,7 +165,7 @@ function getIndexOfCard(playerindex, card) {
 
 /**********************************************************************************************/
 //Zeigt die Karten der Spieler an, hier wird auch der Eventlistener für die Karten hinzugefügt
-/*********************************************************************************************/
+/**********************************************************************************************/
 
 function distributeCards(playerid, htmlid) {
     let playerlistHtml = document.getElementById(htmlid);
@@ -222,7 +224,10 @@ function showdrawpile() {
     drawpileimg.src = "./cardsimg/back0.png";
 };
 
-
+/********************************************************************************************/
+// Hier wird erstmals die Verbindung zum Server hergestellt, welcher das Spiel startet
+// und das result Objekt übermittelt
+/********************************************************************************************/
 async function startNewGame() {
 
     // warten auf das promise (alternativ fetch, then notation)
@@ -264,7 +269,7 @@ async function image_clicked(ev) {
         playAnimation(ev.target, "shake", 1000);
         return;
     } else {
-        playAnimation(ev.target, "cardplayed", 5000);
+        playAnimation(ev.target, "cardplayed", 1000);
         let wildColor = undefined;
         let color = ev.target.CardColor;
         let score = ev.target.CardScore;
@@ -280,42 +285,31 @@ async function image_clicked(ev) {
         if (ev.target.Text == 'Reverse') {
             direction *= -1;
             displayDirection();
-            //  toggleSpinAnimationDirection();
         }
-
 
         tryToPlayCard(ev.target.CardValue, color, wildColor, isDrawCard, score);
 
     }
 }
-    
+
 const directionImg = document.getElementById("directionImg");
 function displayDirection() {
     if (direction === 1) {
-      directionImg.classList.add("rotated");
-      setTimeout(() => {
-        directionImg.src = "others/direction_cw.png";
-        directionImg.classList.remove("rotated");
-      }, 1000); // Zeit sollte zur Dauer der CSS-Transition passen
+        directionImg.classList.add("rotated");
+        setTimeout(() => {
+            directionImg.src = "others/direction_cw.png";
+            directionImg.classList.remove("rotated");
+        }, 1000); // Zeit sollte zur Dauer der CSS-Transition passen
     }
     if (direction === -1) {
-      directionImg.classList.add("rotated");
-      setTimeout(() => {
-        directionImg.src = "others/direction_ccw.png";
-        directionImg.classList.remove("rotated");
-      }, 1000); // Zeit sollte zur Dauer der CSS-Transition passen
-    }
-  }
-/*function toggleSpinAnimationDirection() {
-    if (document.getElementById("directionImg").classList.contains('spinRight')) {
-        document.getElementById("directionImg").classList.remove('spinRight');
-        document.getElementById("directionImg").classList.add('spinLeft');
-    } else {
-        document.getElementById("directionImg").classList.remove('spinLeft');
-        document.getElementById("directionImg").classList.add('spinRight');
+        directionImg.classList.add("rotated");
+        setTimeout(() => {
+            directionImg.src = "others/direction_ccw.png";
+            directionImg.classList.remove("rotated");
+        }, 1000); // Zeit sollte zur Dauer der CSS-Transition passen
     }
 }
-*/
+
 
 /************************************************************************************/
 // Aktualisiert den Score des Spielers, nachdem er eine normale Karte gespielt hat
