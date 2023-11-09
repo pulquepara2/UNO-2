@@ -286,11 +286,13 @@ async function image_clicked(ev) {
             direction *= -1;
             displayDirection();
         }
-
         tryToPlayCard(ev.target.CardValue, color, wildColor, isDrawCard, score);
-
     }
 }
+
+/************************************************************************************/
+// Animation bei Richtungswechsel, zeigt das entsprechnende Directionimage an
+/************************************************************************************/
 
 const directionImg = document.getElementById("directionImg");
 function displayDirection() {
@@ -512,7 +514,6 @@ function displayCurrentPlayer() {
 }
 
 
-
 /***************************************************/
 // Funktion für Animationen
 /***************************************************/
@@ -612,8 +613,8 @@ async function updatePlayerCards(playerName) {
 
 
 /**************************************************************/
-// ermittelt, ob und wer das Spiel gewonnen hat
-// 
+// ermittelt, ob und wer das Spiel gewonnen hat 
+// zeigt das Winnermodal
 /*************************************************************/
 
 function checkIfThereIsAWinner() {
